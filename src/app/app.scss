@@ -1,0 +1,38 @@
+@use 'variables' as *;
+.top-nav{
+    background:$top-nav-color;
+    color: $text-dark;
+}
+.content{
+    width: 100%;
+    height: 100%;
+    margin: 0 0;
+    background: $primary-bg-color;
+    color: $text-dark;
+}
+
+.light-theme-body {
+    background-color: $primary-bg-color;
+    color: $text-dark;
+}
+
+.dark-theme-body {
+    background-color: $background-dark;
+    color: $text-light;
+}
+
+.light-theme-nav {
+    background-color: $top-nav-color;
+    color: $text-dark;
+}
+
+.dark-theme-nav {
+    background-color: $top-nav-dark-color;
+    color: $text-light;
+}
+
+ .toast-success {
+  background: #4caf50 !important;
+  color: #fff !important;
+  z-index: 10000;
+}

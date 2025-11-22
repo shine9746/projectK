@@ -1,0 +1,31 @@
+<div class="posts-container">
+    <div class="posts-header">
+        <div class="title-block">
+            <h2 class="title">Community Feed</h2>
+            <p class="subtitle">Latest posts from the community</p>
+        </div>
+    
+        <div class="actions">
+            <button class="action-btn">Refresh</button>
+            <button class="action-btn">Filter</button>
+        </div>
+    </div>
+    <div class="posts-scroll">
+        @if (posts().length === 0) {
+        <p class="empty-state">No posts yet.</p>
+        }
+        @for (post of posts(); track post.id) {
+        <div class="post-card">
+            <div class="post-header">
+                <img class="post-avatar" [src]="" />
+                <div>
+                    <h4>{{ post.postTitle }}</h4>
+                    <span class="timestamp">{{ post.createdAt | date:'short' }}</span>
+                </div>
+            </div>
+            <p class="post-content">{{ post.postContent }}</p>
+            <button class="like-btn" (click)="likePost(post.id)">❤️ {{ post.postLikes }}</button>
+        </div>
+        }
+    </div>
+</div>

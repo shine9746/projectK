@@ -1,0 +1,11 @@
+/* Material prebuilt theme */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* Place to add application theme overrides or secondary colors */
+body {
+    width: 100%;
+
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 0;
+}

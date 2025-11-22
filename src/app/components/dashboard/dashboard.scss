@@ -1,0 +1,50 @@
+/* GRID LAYOUT ---------------------------------------------------------- */
+.dashboard {
+  display: grid;
+  grid-template-columns: 260px 1fr 320px;
+  gap: 1.5rem;
+  height: 100vh;
+  padding: 1rem;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 200px 1fr;
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+/* LEFT PANEL: USER DETAILS --------------------------------------------- */
+.user-panel {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  height: fit-content;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+///* CENTER PANEL: POSTS --------------------------------------------- */
+.posts-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;   /* or 100vh or whatever grid cell height */
+  min-height: 0;
+}
+
+
+/* RIGHT PANEL: CREATE POST --------------------------------------------- */
+.create-panel {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  height: fit-content;
+
+  @media (max-width: 900px) {
+    margin-top: 1rem;
+  }
+}
+

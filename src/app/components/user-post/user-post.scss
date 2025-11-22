@@ -1,0 +1,33 @@
+.post-box {
+width: 100%;
+max-width: 500px;
+display: flex;
+flex-direction: column;
+gap: 0.8rem;
+}
+
+
+textarea {
+width: 100%;
+min-height: 140px;
+border-radius: 10px;
+border: 1px solid #ddd;
+padding: .8rem;
+resize: vertical;
+margin-bottom: .3rem;
+box-sizing: border-box;
+}
+
+
+.actions {
+display: flex;
+justify-content: flex-end;
+gap: .4rem;
+}
+
+
+button[mat-icon-button] {
+width: 46px;
+height: 46px;
+border-radius: 10px;
+}

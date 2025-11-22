@@ -1,0 +1,102 @@
+/* CENTER PANEL: POSTS -------------------------------------------------- */
+/* Important: allow the panel to be a constrained flex container by setting min-height: 0.
+   Without this the posts-scroll won't be able to overflow and scroll inside the grid cell. */
+
+/* Sticky header for posts */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;  /* REQUIRED so .posts-scroll can overflow */
+  height: 100%;   /* important after moving into component */
+}
+.posts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* header text block */
+.title-block .title {
+  margin: 0;
+  font-size: 1.25rem;
+}
+.title-block .subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* small action buttons in header */
+.actions {
+  display: flex;
+  gap: .5rem;
+}
+.action-btn {
+  padding: .35rem .6rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: none;
+  cursor: pointer;
+}
+
+/* Scrollable area */
+.posts-scroll {
+  flex: 1 1 auto; /* grow and shrink */
+  min-height: 0;  /* critical: lets this element actually scroll inside flex/grid */
+  overflow-y: auto;
+  margin-top: 1rem;
+  padding-right: .5rem;
+
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.posts-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Post cards */
+.post-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.post-header {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+}
+
+.post-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.timestamp {
+  color: #666;
+  font-size: .85rem;
+}
+
+.like-btn {
+  margin-top: .5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+}

@@ -1,0 +1,149 @@
+@use 'variables' as *;
+.auth {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  min-height: calc(100vh - 70px); /* adjust for top nav height */
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.login-form-wr{
+  height: 300px;
+  width: 100%;
+  max-width: 340px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;              /* important: space between fields */
+  box-sizing: border-box;
+  align-items: center;
+  overflow: hidden;
+  justify-content: center;
+}
+
+/* form wrapper: vertical stack, explicit gap */
+.form-wr {
+  width: 100%;
+  max-width: 340px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;              /* important: space between fields */
+  box-sizing: border-box;
+  align-items: stretch;   /* ensure children fill width */
+  overflow: hidden;
+}
+
+/* Force mat-form-fields to behave as normal stacked inputs */
+.form-wr ::ng-deep mat-form-field {
+  display: block !important;      /* ensure block stacking */
+  width: 100% !important;         /* full width inside wrapper */
+  box-sizing: border-box !important;
+  margin: 0 !important;
+}
+
+/* Make internal mat-field heights predictable */
+.form-wr ::ng-deep mat-form-field .mat-form-field-flex {
+  min-height: 36px !important;    /* prevents internal collapse */
+  align-items: center !important;
+  padding: 0 8px !important;      /* tighten padding */
+}
+
+/* Ensure input area doesn't collapse */
+.form-wr ::ng-deep mat-form-field .mat-form-field-infix {
+  padding: 0 !important;
+}
+
+/* small / compact variant */
+.form-wr ::ng-deep mat-form-field.mini {
+  height: auto !important;
+}
+
+/* radio and action spacing */
+.gender-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+}
+
+/* image + file */
+.image-preview { width: 80px; height: 80px; margin: 0 auto; border-radius: 50%; overflow: hidden; }
+.file-section { text-align: center; font-size: 13px; }
+
+/* buttons */
+.action-buttons { display:flex; justify-content:center; gap:12px; margin-top:6px; }
+.round-btn { width: 40px; height: 40px; border-radius: 50%; }
+.submit-btn{
+  color: white;
+  background-color: $submit-btn-bg;
+  border: none;
+}
+.login-btn{
+  color: white;
+  background-color: $primary-bg-color-alt;
+  border: none;
+}
+
+.profile-upload-wrapper {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid #e0e0e0;
+  transition: 0.25s ease-in-out;
+  margin: 0 auto;  
+}
+
+.profile-upload-wrapper:hover {
+  border-color: 3px solid #030e04;
+}
+
+.profile-image,
+.placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  color: #9e9e9e;
+  font-size: 32px;
+}
+
+.upload-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.45);
+  color: white;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.profile-upload-wrapper:hover .upload-overlay {
+  opacity: 1;
+}
+
+.upload-overlay mat-icon {
+  font-size: 25px;
+}
+

@@ -1,0 +1,86 @@
+@use 'variables' as *;
+.top-nav {
+  height: 64px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  .titleName {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  button[mat-icon-button] {
+    margin-left: 8px;
+
+    mat-icon {
+      font-size: 24px;
+      transition: color 0.2s ease, transform 0.15s ease;
+    }
+
+    &:hover mat-icon {
+      transform: scale(1.18);
+      opacity: 0.85;
+    }
+  }
+}
+
+/* Light Nav Theme */
+.light-theme-nav {
+  background: $top-nav-color;
+  color: #333;
+
+  .titleName {
+    color: #2b2b2b;
+  }
+
+  mat-icon {
+    color: #444;
+  }
+
+  button[mat-icon-button]:hover mat-icon {
+    color: #000;
+  }
+}
+
+/* Dark Nav Theme */
+.dark-theme-nav {
+  background: #1e1e1e;
+  color: #f5f5f5;
+
+  .titleName {
+    color: #fafafa;
+  }
+
+  mat-icon {
+    color: #e0e0e0;
+  }
+
+  button[mat-icon-button]:hover mat-icon {
+    color: #fff;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .top-nav {
+    height: 56px;
+    padding: 0 12px;
+
+    .titleName {
+      font-size: 1.2rem;
+    }
+
+    button[mat-icon-button] mat-icon {
+      font-size: 22px;
+    }
+  }
+}

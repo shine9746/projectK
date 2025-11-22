@@ -1,0 +1,11 @@
+<mat-toolbar class="top-nav" [ngClass]="themeMode === 'light_mode' ? 'dark-theme-nav' : 'light-theme-nav'">
+  <span class="titleName">Projectk</span>
+  <span class="spacer"></span>
+  @for (nav of navButtonsList; track nav) {
+  @if(getUsers()){
+    <button mat-icon-button aria-label="{{ nav.label }}" (click)="menuAction(nav)">
+      <mat-icon [ngClass]="nav.iconClass">{{ nav.icon }}</mat-icon>
+    </button>
+  }
+  }
+</mat-toolbar>
