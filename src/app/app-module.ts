@@ -29,6 +29,8 @@ import { TopNavigation } from './components/top-navigation/top-navigation';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { AuthInterceptor } from './interceptor/auth-interceptor';
+import { EditUser } from './components/edit-user/edit-user';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     App,
@@ -38,7 +40,8 @@ import { AuthInterceptor } from './interceptor/auth-interceptor';
     Feed,
     UserPost,
     InputController,
-    TopNavigation
+    TopNavigation,
+    EditUser
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { AuthInterceptor } from './interceptor/auth-interceptor';
     MatSelectModule,
     MatOptionModule,
     MatDividerModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

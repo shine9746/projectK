@@ -1,0 +1,196 @@
+/* edit-user-dialog.component.scss */
+
+/* Host wrapper to scope styles reliably */
+:host {
+  display: block;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  --dialog-width: 420px;
+}
+
+/* Dialog container sizing */
+.dialog-container {
+  width: var(--dialog-width);
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: #fff;
+  color: #222;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e8e8e8;
+  background: #fff;
+
+  h2 {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.2px;
+  }
+
+  button[mat-icon-button] {
+    min-width: 36px;
+    min-height: 36px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* CONTENT */
+.content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* PROFILE IMAGE */
+.profile-image-container {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f1f1f1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  /* Guaranteed perfect alignment */
+  .edit-image-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    transform: translate(30%, 30%);
+    z-index: 5;
+
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      font-size: 22px;
+    }
+  }
+}
+
+
+/* FORM LAYOUT */
+.form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+/* Full-width controls */
+.form mat-form-field {
+  width: 100%;
+}
+
+/* Make password field span full width (last column) */
+.form mat-form-field:nth-child(odd) {
+  grid-column: 1;
+}
+.form mat-form-field:nth-child(even) {
+  grid-column: 2;
+}
+
+/* If you want certain controls to occupy full row, add class="full" to them */
+/* Example: <mat-form-field class="full"> */
+.form mat-form-field.full {
+  grid-column: 1 / -1;
+}
+
+/* Material input appearance adjustments */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  border-radius: 8px;
+}
+::ng-deep .mat-form-field-infix {
+  padding: 0.5rem 0.75rem;
+}
+
+/* Dialog actions area */
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #e8e8e8;
+  background: #fff;
+
+  button {
+    min-height: 40px;
+    height: 40px;
+  }
+
+  button mat-icon {
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+}
+
+/* Primary save button style */
+button[mat-flat-button][color="primary"] {
+  background: linear-gradient(180deg,#3f51b5,#2f3ea8);
+  color: #fff;
+}
+
+/* Cancel / warn button */
+button[mat-stroked-button][color="warn"] {
+  border-color: #ff6b6b;
+  color: #b00020;
+  background: transparent;
+}
+
+/* Responsive: stack fields on narrow screens */
+@media (max-width: 480px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-image-container {
+    width: 100px;
+    height: 100px;
+
+    .profile-image {
+      width: 92px;
+      height: 92px;
+    }
+  }
+}
+
+/* Small helpers for validation state */
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-outline {
+  border-color: #e53935 !important;
+}
+
+/* Optional small touch: hover for edit image button */
+.profile-image-container .edit-image-btn:hover {
+  transform: translate(30%, 30%) scale(1.03);
+  transition: transform 160ms ease;
+}
