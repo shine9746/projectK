@@ -1,15 +1,23 @@
 <div class="posts-container">
-    <div class="posts-header">
-        <div class="title-block">
-            <h2 class="title">Community Feed</h2>
-            <p class="subtitle">Latest posts from the community</p>
-        </div>
-    
-        <div class="actions">
-            <button class="action-btn">Refresh</button>
-            <button class="action-btn">Filter</button>
-        </div>
+    <div class="posts-header center-header">
+    <h2 class="title feed-title">Feed</h2>
+
+    <div class="actions">
+        <!-- REFRESH BUTTON -->
+        <button class="action-btn icon-btn"
+                [ngClass]="refreshActive ? 'active-icon' : ''"
+                (click)="toggleRefresh()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+
+        <!-- FILTER BUTTON -->
+        <button class="action-btn icon-btn"
+                [ngClass]="filterActive ? 'active-icon' : ''"
+                (click)="toggleFilter()">
+            <mat-icon>filter_list</mat-icon>
+        </button>
     </div>
+</div>
     <div class="posts-scroll">
         @if (posts().length === 0) {
         <p class="empty-state">No posts yet.</p>
@@ -17,14 +25,31 @@
         @for (post of posts(); track post.id) {
         <div class="post-card">
             <div class="post-header">
-                <img class="post-avatar" [src]="" />
+                <img class="post-avatar" [src]="'https://localhost:7162'+post.postOwnerImage" />
                 <div>
-                    <h4>{{ post.postTitle }}</h4>
-                    <span class="timestamp">{{ post.createdAt | date:'short' }}</span>
+                    <h3 class="post-title">{{ post.postTitle }}</h3>
+                    <h4>{{ post.postOwnerName }}</h4>
+                    <span class="timestamp">{{ post.postCreationDate | date:'short' }}</span>
                 </div>
             </div>
             <p class="post-content">{{ post.postContent }}</p>
-            <button class="like-btn" (click)="likePost(post.id)">❤️ {{ post.postLikes }}</button>
+            <div>
+                <button mat-raised-button class="like-btn" [ngClass]="post.liked ? 'likeButton' : ''"
+                    (click)="buttonAction(post,1)">
+                    <mat-icon>thumb_up</mat-icon>
+                    @if(post.postLikes > 0) {
+                    <span>{{post.postLikes}}</span>
+                    }
+                </button>
+
+                <button mat-raised-button class="dislike-btn" [ngClass]="post.disLiked ? 'disLikeButton': ''"
+                    (click)="buttonAction(post,2)">
+                    <mat-icon>thumb_down</mat-icon>
+                    @if(post.postDisLikes > 0) {
+                    <span>{{post.postDisLikes}}</span>
+                    }
+                </button>
+            </div>
         </div>
         }
     </div>

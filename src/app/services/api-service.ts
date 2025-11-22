@@ -28,5 +28,11 @@ export class ApiService {
    public getAllPosts() {
     return this.http.get('https://localhost:7162/api/Posts/GetAllPosts');
   }
+
+  public userPostInteraction(payload: any) {
+    return this.http.post('https://localhost:7162/api/Posts/UserPostInteraction', payload);
+  }
+
+  
   
 }

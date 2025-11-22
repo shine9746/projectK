@@ -1,0 +1,74 @@
+<div class="dialog-container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h2>Edit Profile</h2>
+        <button mat-icon-button (click)="close()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <!-- CONTENT -->
+    <mat-dialog-content class="content">
+
+        <!-- PROFILE IMAGE -->
+        <div class="profile-image-container">
+            <img [src]="" class="profile-image" />
+
+            <button mat-mini-fab color="primary" class="edit-image-btn" >
+                <mat-icon>photo_camera</mat-icon>
+            </button>
+
+            <input type="file" #fileInput hidden  accept="image/*" />
+        </div>
+
+        <!-- FORM -->
+        <form class="form">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Gender</mat-label>
+                <mat-select>
+                    <mat-option value="male">Male</mat-option>
+                    <mat-option value="female">Female</mat-option>
+                    <mat-option value="other">Other</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Phone Number</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide">
+                    <mat-icon>{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+                </button>
+            </mat-form-field>
+
+        </form>
+    </mat-dialog-content>
+
+    <!-- ACTIONS -->
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button color="warn" (click)="close()">
+            <mat-icon>close</mat-icon>&nbsp;Cancel
+        </button>
+
+        <button mat-flat-button color="primary">
+            <mat-icon>check</mat-icon>&nbsp;Save
+        </button>
+    </mat-dialog-actions>
+
+</div>
