@@ -21,34 +21,4 @@ interface Post {
 })
 
 export class Dashboard {
-public userDetails = signal<IUserDetails | null>(null);
-
-
-newPostText: any = signal('');
-  createPost() {
-    if (!this.newPostText().trim()) return;
-
-    const newPost: Post = {
-      id: Date.now(),
-      author: {
-        name: 'You',
-        avatarUrl: 'https://i.pravatar.cc/150?img=3'
-      },
-      content: this.newPostText(),
-      createdAt: new Date(),
-      likes: 0
-    };
-    this.newPostText.set('');
-  }
-
-  public constructor(private commonService: CommonService) {
-  }
-
-  ngOnInit() {
-    this.getUserDetails();
-  }
-
-  private getUserDetails() {
-    this.userDetails.set(this.commonService.userDetails);
-  }
 }

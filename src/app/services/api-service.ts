@@ -20,7 +20,11 @@ export class ApiService {
   public getAllUsers(data: any) {
     return this.http.post('https://localhost:7162/api/Users/GetAllUsers', data);
   }
-
+  
+  public updateUser(payload: any) {
+    return this.http.put('https://localhost:7162/api/Users/UpdateUser', payload);
+  }
+  
   public createPost(payload: any) {
     return this.http.post('https://localhost:7162/api/Posts/CreatePost', payload);
   }
@@ -33,6 +37,9 @@ export class ApiService {
     return this.http.post('https://localhost:7162/api/Posts/UserPostInteraction', payload);
   }
 
+  public deleteUser(payload: any) {
+    return this.http.post('https://localhost:7162/api/Users/DeleteUser', payload);
+  }
   
   
 }

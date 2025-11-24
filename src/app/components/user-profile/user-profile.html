@@ -1,45 +1,49 @@
 <mat-card class="user-card mat-elevation-z3">
 
+  <img class="avatar" [src]="'https://localhost:7162' + userDetails()?.filePath" />
 
-<img class="avatar" [src]="'https://localhost:7162' + userDetails()?.filePath" />
-
-
-<!-- Name row with gender icon -->
-<div class="name-row">
-@for (gender of gendersList; track $index) {
-@if (gender.key === userDetails()?.gender) {
-<mat-icon class="gender-icon" [ngStyle]="{ color: gender.color }">{{ gender.icon }}</mat-icon>
-}
-}
-<h3>{{ userDetails()?.userName }}</h3>
-</div>
-
-
-<mat-divider></mat-divider>
-
-
-<div class="info-list">
-<div class="info-item">
-<mat-icon style="color:#1976d2">mail</mat-icon>
-<span>{{ userDetails()?.email }}</span>
-</div>
+  <div class="name-row">
+        <mat-icon
+          class="gender-icon"
+          [ngClass]="{
+            'male': userDetails()?.gender === 1,
+            'female': userDetails()?.gender === 2,
+            'other': userDetails()?.gender === 3}">  
+            {{userDetails()?.gender === 1 ? 
+            'male': userDetails()?.gender === 2 ? 
+            'female': userDetails()?.gender === 3 ? 
+            'person': 'Not Defined' }}        
+        </mat-icon>
+    </div>
+    <h3 class="user-name">{{ userDetails()?.userName }}</h3>
 
 
-<div class="info-item">
-<mat-icon style="color:#388e3c">phone</mat-icon>
-<span>{{ userDetails()?.phoneNumber }}</span>
-</div>
-</div>
+  <mat-divider></mat-divider>
 
+  <div class="info-list">
+    <div class="info-item">
+      <mat-icon class="email">mail</mat-icon>
+      <span>{{ userDetails()?.email }}</span>
+    </div>
 
-<div class="actions">
-<button mat-raised-button color="primary" matTooltip="Edit Profile" class="action-filled" (click)="edit()">
-<mat-icon>edit</mat-icon>
-</button>
+    <div class="info-item">
+      <mat-icon class="phone">phone</mat-icon>
+      <span>{{ userDetails()?.phoneNumber }}</span>
+    </div>
+  </div>
 
+  <div class="actions">
+    <button mat-icon-button matTooltip="Edit Profile"color="primary" (click)="edit()">
+      <mat-icon>edit</mat-icon>
+    </button>
 
-<button mat-raised-button color="warn" matTooltip="Logout" class="action-filled" (click)="logout()">
-<mat-icon>logout</mat-icon>
-</button>
-</div>
+    <button mat-icon-button color="warn" matTooltip="Delete Account" (click)="deleteUser()">
+      <mat-icon>delete</mat-icon>
+    </button>
+
+    <button mat-icon-button color="accent" matTooltip="Logout" (click)="logout()">
+      <mat-icon>logout_variant</mat-icon> <!-- New icon -->
+    </button>
+  </div>
+
 </mat-card>

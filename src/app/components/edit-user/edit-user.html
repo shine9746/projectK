@@ -12,51 +12,47 @@
     <mat-dialog-content class="content">
 
         <!-- PROFILE IMAGE -->
-        <div class="profile-image-container">
-            <img [src]="" class="profile-image" />
+        <div class="profile-image-container"(click)="fileInput.click()">
+            <img [src]="imageFilePath ? 'https://localhost:7162'+imageFilePath : imageBase64" class="profile-image" />
+            @if(!imageFilePath && !imageBase64){
+                <button mat-mini-fab color="primary" class="edit-image-btn">
+                    <mat-icon>photo_camera</mat-icon>
+                </button>
+            }
 
-            <button mat-mini-fab color="primary" class="edit-image-btn" >
-                <mat-icon>photo_camera</mat-icon>
-            </button>
-
-            <input type="file" #fileInput hidden  accept="image/*" />
+            <input type="file" #fileInput hidden  accept="image/*" (change)="onFileSelected($event)" />
         </div>
 
         <!-- FORM -->
-        <form class="form">
-
+        <form class="form"[formGroup]="userForm">
             <mat-form-field appearance="outline">
                 <mat-label>Name</mat-label>
-                <input matInput>
+                <input matInput formControlName="userName">
+            </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Phone Number</mat-label>
+                <input matInput formControlName="phoneNumber">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-                <mat-label>Gender</mat-label>
-                <mat-select>
-                    <mat-option value="male">Male</mat-option>
-                    <mat-option value="female">Female</mat-option>
-                    <mat-option value="other">Other</mat-option>
-                </mat-select>
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
-                <input matInput>
+                <input matInput formControlName="email">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-                <mat-label>Phone Number</mat-label>
-                <input matInput>
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender">
+                    <mat-option [value]="1">Male</mat-option>
+                    <mat-option [value]="2">Female</mat-option>
+                    <mat-option [value]="3">Other</mat-option>
+                </mat-select>
             </mat-form-field>
-
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'">
-                <button mat-icon-button matSuffix (click)="hide = !hide">
-                    <mat-icon>{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
-                </button>
-            </mat-form-field>
-
         </form>
     </mat-dialog-content>
 
@@ -65,10 +61,10 @@
         <button mat-stroked-button color="warn" (click)="close()">
             <mat-icon>close</mat-icon>&nbsp;Cancel
         </button>
-
-        <button mat-flat-button color="primary">
+        <button mat-flat-button color="primary"(click)="updateUser()">
             <mat-icon>check</mat-icon>&nbsp;Save
         </button>
+       
     </mat-dialog-actions>
 
 </div>
