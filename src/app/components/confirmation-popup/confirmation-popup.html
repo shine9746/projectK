@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content>{{ message }}</mat-dialog-content>
+@for (field of fieldsList; track $index) {
+<div class="dynamicFields">
+    @if (field.fieldType === "input") {
+    <mat-form-field appearance="outline" class="mini">
+        <input matInput [(ngModel)]="fieldDetails[field?.fieldControl]">
+    </mat-form-field>
+    }
+    @else if(field.fieldType === "inputPassword") {
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password" 
+        [(ngModel)]="fieldDetails[field?.fieldControl]"/>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide" type="button">
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+    </mat-form-field>
+    }
+</div>
+}
+<mat-dialog-actions align="end">
+    @for (button of buttonsList; track $index) {
+    <button mat-button color="button.class"(click)="buttonAction(button)">{{button?.displayName}}</button>
+    }
+</mat-dialog-actions>

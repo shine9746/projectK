@@ -31,6 +31,8 @@ import { MatCardModule } from '@angular/material/card';
 import { AuthInterceptor } from './interceptor/auth-interceptor';
 import { EditUser } from './components/edit-user/edit-user';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConfirmationPopup } from './components/confirmation-popup/confirmation-popup';
 @NgModule({
   declarations: [
     App,
@@ -41,7 +43,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     UserPost,
     InputController,
     TopNavigation,
-    EditUser
+    EditUser,
+    ConfirmationPopup
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatOptionModule,
     MatDividerModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

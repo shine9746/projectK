@@ -19,7 +19,7 @@ export class Authentication {
     { key: 0, label: 'Submit', icon: 'send', buttonClass: 'round-btn submit-btn' },
     { key: 1, label: 'Login', icon: 'login', buttonClass: 'round-btn login-btn' }
   ]
-  public isLogin: boolean = false;
+  public isLogin: boolean = true;
   public imageBase64: string | undefined;
   public gendersList:any[] = [
     {key: 1, value: "Male"},
@@ -29,6 +29,7 @@ export class Authentication {
   constructor(private formBuilder: FormBuilder, private apiService: ApiService,
     private commonService: CommonService, private router: Router) { }
   ngOnInit() {
+    this.commonService.clearStorage();
     this.initializeForm();
   }
 
@@ -65,6 +66,7 @@ export class Authentication {
       case 1:
         this.isLogin = !this.isLogin;
         this.buttonsList[1].icon = this.isLogin ? 'person_add' : 'login';
+        this.initializeForm();
         break;
     }
   }

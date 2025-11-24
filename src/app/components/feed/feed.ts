@@ -11,12 +11,13 @@ import { CommonService } from '../../services/common-service';
 export class Feed {
  posts = signal<any[]>([]);
 
-  constructor(private apiService: ApiService,private commonSerivce: CommonService) {
+  constructor(private apiService: ApiService,private commonService: CommonService) {
 
   }
 
   ngOnInit() {
     this.getAllPosts();
+    this.getSharedData();
   }
 
   private getAllPosts() {
@@ -29,7 +30,7 @@ export class Feed {
         this.posts.set(response?.postsList);
       }
       else{
-        this.commonSerivce.toaster(response?.responseMessage, 'toaster-error');
+        this.commonService.toaster(response?.responseMessage, 'toaster-error');
       }
     })
   }
@@ -47,7 +48,7 @@ export class Feed {
       post.postDisLikes = post.disLiked ? +1 : 0;
       post.postLikes = post.postLikes > 1 ? -1 : 0;
     }
-    const interactedUser = this.commonSerivce.userDetails?.userId;
+    const interactedUser = this.commonService.userDetails?.userId;
     const payload = {
       postId : post?.postId,
       userId : Number(interactedUser),
@@ -56,7 +57,7 @@ export class Feed {
 
     this.apiService.userPostInteraction(payload).subscribe((response: any)=>{
       if(response.mode !== 1) {
-        this.commonSerivce.toaster(response?.responseMessage, 'toaster-error');
+        this.commonService.toaster(response?.responseMessage, 'toaster-error');
       }
       this.getAllPosts();
     })
@@ -88,4 +89,13 @@ toggleFilter() {
   this.filterActive = !this.filterActive;
   // your filter logic (All posts / My posts toggle) here
 }
+
+getSharedData(){
+    this.commonService.getSharedDataHandler().subscribe((response: any)=>{
+      if(response?.type === "USER_UPDATED") {
+        this.getAllPosts();
+      }
+    })
+  }
+
 }

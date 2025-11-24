@@ -77,16 +77,13 @@
     position: absolute;
     bottom: 0;
     right: 0;
-
-    transform: translate(30%, 30%);
+    transform: translate(-90%, -90%);
     z-index: 5;
-
     width: 42px;
     height: 42px;
     min-width: 42px;
     min-height: 42px;
     padding: 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -191,6 +188,6 @@ button[mat-stroked-button][color="warn"] {
 
 /* Optional small touch: hover for edit image button */
 .profile-image-container .edit-image-btn:hover {
-  transform: translate(30%, 30%) scale(1.03);
+  transform: translate(-90%, -90%) scale(1.03);
   transition: transform 160ms ease;
 }
