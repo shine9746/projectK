@@ -63,11 +63,12 @@ export class EditUser {
           this.commonService.userDetails = JSON.stringify({         
             ...this.commonService.userDetails,
             ...updatedUserDetails,
+            ...{filePath: response?.filePath}
           });
           this.commonService.setSharedDataHandler({
           type: "USER_UPDATED",
           data: ""
-        })
+        });
           this.dialogRef.close(true);
         }
         

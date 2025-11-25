@@ -30,7 +30,11 @@ export class UserPost {
       }
       this.apiService.createPost(payload).subscribe((response: any)=>{
         if(response?.mode === 1) {
-          this.commonService.toaster(response.responseMessage,'toast-success')
+          this.commonService.toaster(response.responseMessage,'toast-success');
+          this.commonService.setSharedDataHandler({
+          type: "POST_CREATED",
+          data: ""
+        })
         }
       })
     }

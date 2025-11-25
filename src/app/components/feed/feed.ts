@@ -10,7 +10,7 @@ import { CommonService } from '../../services/common-service';
 })
 export class Feed {
  posts = signal<any[]>([]);
-
+arr:any[]=[]
   constructor(private apiService: ApiService,private commonService: CommonService) {
 
   }
@@ -48,7 +48,7 @@ export class Feed {
       post.postDisLikes = post.disLiked ? +1 : 0;
       post.postLikes = post.postLikes > 1 ? -1 : 0;
     }
-    const interactedUser = this.commonService.userDetails?.userId;
+    const interactedUser = this.commonService?.userDetails?.userId;
     const payload = {
       postId : post?.postId,
       userId : Number(interactedUser),
@@ -92,10 +92,48 @@ toggleFilter() {
 
 getSharedData(){
     this.commonService.getSharedDataHandler().subscribe((response: any)=>{
-      if(response?.type === "USER_UPDATED") {
+      if(["POST_CREATED","USER_UPDATED"]?.includes(response?.type)) {
         this.getAllPosts();
       }
     })
   }
+
+
+  toggleComments(post: any) {
+  post.showComments = !post.showComments;
+
+  if (post.showComments && !post.commentsLoaded) {
+    this.getUserComments(post);
+  }
+}
+
+loadComments(post: any) {
+  // this.api.getComments(post.id).subscribe(res => {
+  //   post.comments = res;
+  //   post.commentsLoaded = true;
+  // });
+}
+
+submitComment(post: any) {
+  if (!post?.comment?.toString()?.trimLeft()?.length) return;
+  const payload =  {
+    userId :  Number(this.commonService?.userDetails?.userId),
+    postId : Number(post?.postId),
+    commentContent : post?.comment
+  }
+  this.apiService.UserComments(payload).subscribe((response: any)=>{
+    if(response?.mode === 1) {
+      this.commonService.toaster(response?.responseMessage, 'toaster-success');
+    }
+  });
+}
+
+private getUserComments(post:any) {
+  this.apiService.getUserComments(post).subscribe((response: any)=>{
+    if(response?.mode === 1) {
+      post.comments = response?.comments;
+    }
+  })
+}
 
 }
