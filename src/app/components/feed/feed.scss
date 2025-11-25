@@ -1,20 +1,19 @@
-/* CENTER PANEL: POSTS -------------------------------------------------- */
-/* Important: allow the panel to be a constrained flex container by setting min-height: 0.
-   Without this the posts-scroll won't be able to overflow and scroll inside the grid cell. */
-
-/* Sticky header for posts */
 :host {
   display: flex;
   flex-direction: column;
   min-height: 0;
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
+
+/* MAIN POSTS CONTAINER */
 .posts-container {
   display: flex;
   flex-direction: column;
-  min-height: 0;  /* REQUIRED so .posts-scroll can overflow */
-  height: 100%;   /* important after moving into component */
+  min-height: 0;
+  height: 100%;
 }
+
+/* HEADER */
 .posts-header {
   display: flex;
   align-items: center;
@@ -28,22 +27,11 @@
   z-index: 2;
 }
 
-/* header text block */
-.title-block .title {
-  margin: 0;
-  font-size: 1.25rem;
-}
-.title-block .subtitle {
-  margin: 0;
-  font-size: 0.85rem;
-  color: #666;
-}
-
-/* small action buttons in header */
 .actions {
   display: flex;
   gap: .5rem;
 }
+
 .action-btn {
   padding: .35rem .6rem;
   border-radius: 8px;
@@ -52,29 +40,29 @@
   cursor: pointer;
 }
 
-/* Scrollable area */
+/* SCROLL AREA */
 .posts-scroll {
-  flex: 1 1 auto; /* grow and shrink */
-  min-height: 0;  /* critical: lets this element actually scroll inside flex/grid */
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
   margin-top: 1rem;
   padding-right: .5rem;
 
-  /* Hide scrollbar */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
 .posts-scroll::-webkit-scrollbar {
   display: none;
 }
 
-/* Post cards */
+/* POST CARD */
 .post-card {
   background: #fff;
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .post-header {
@@ -89,39 +77,6 @@
   border-radius: 50%;
 }
 
-.timestamp {
-  color: #666;
-  font-size: .85rem;
-}
-
-.like-btn {
-  margin-right: 10px;
-}
-
-.dislike-btn {
-  margin-right: 10px;
-}
-
-
-.likeButton{
-  background-color: #1f6e0b !important;
-  mat-icon{
-    color: #eee;
-  }
-    span{
-      color: white;
-    }
-}
-
-.disLikeButton{
-  background-color: #0b1a6e !important;
-   mat-icon{
-    color: #eee;
-  }
-  span{
-      color: white;
-    }
-}
 .post-title {
   margin: 0.5rem 0 0.25rem 0;
   font-size: 1.1rem;
@@ -129,25 +84,108 @@
   color: #333;
 }
 
+.timestamp {
+  color: #666;
+  font-size: .85rem;
+}
 
-.icon-btn {
+/* LIKE / DISLIKE */
+.like-btn,
+.dislike-btn {
+  margin-right: 10px;
+}
+
+.likeButton {
+  background-color: #1f6e0b !important;
+
+  mat-icon,
+  span {
+    color: white !important;
+  }
+}
+
+.disLikeButton {
+  background-color: #0b1a6e !important;
+
+  mat-icon,
+  span {
+    color: white !important;
+  }
+}
+
+/* COMMENT SECTION */
+.comment-section {
+  margin-top: 1rem;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+/* Comment Toggle */
+.toggle-comments {
+  background: none;
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: .35rem .6rem;
+  gap: .25rem;
+  font-weight: 600;
+  color: #3949ff;
+  margin-bottom: .5rem;
 }
 
-.icon-btn mat-icon {
-  font-size: 22px;
-  color: #555;
+/* Comment List */
+.comment-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding-right: .5rem;
+
+  scrollbar-width: thin;
 }
 
-/* ACTIVE STATE HIGHLIGHT */
+.comment-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.comment-item {
+  padding: .5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+
+  p {
+    margin: 0.25rem 0;
+  }
+}
+
+.comment-date {
+  font-size: .75rem;
+  color: #777;
+}
+
+/* Input */
+.comment-input-row {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+
+.comment-input {
+  flex: 1;
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.empty-comment {
+  color: #888;
+  font-size: .9rem;
+}
+
+/* ACTIVE ICON STATE */
 .active-icon {
   background-color: #e3e9ff !important;
   border-color: #6d75ff !important;
-}
 
-.active-icon mat-icon {
-  color: #3949ff !important;
+  mat-icon {
+    color: #3949ff !important;
+  }
 }

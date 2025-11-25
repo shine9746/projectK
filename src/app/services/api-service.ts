@@ -40,6 +40,13 @@ export class ApiService {
   public deleteUser(payload: any) {
     return this.http.post('https://localhost:7162/api/Users/DeleteUser', payload);
   }
-  
+
+  public UserComments(payload: any) {
+    return this.http.post('https://localhost:7162/api/Posts/UserComments', payload);
+  }
+
+  public getUserComments(payload: any) {
+    return this.http.post('https://localhost:7162/api/Posts/GetPostComments', payload);
+  }
   
 }
