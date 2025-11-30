@@ -1,38 +1,45 @@
 @use 'variables' as *;
-.top-nav{
-    background:$top-nav-color;
-    color: $text-dark;
-}
-.content{
-    width: 100%;
-    height: 100%;
-    margin: 0 0;
-    background: $primary-bg-color;
-    color: $text-dark;
+
+/* App shell */
+.app-shell {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Fixed top nav */
+.top-nav {
+  height: 70px;
+  background: $top-nav-color;
+  color: $text-dark;
+  flex-shrink: 0;
+}
+
+/* ✅ SCROLL CONTAINER (scroll works, bar hidden) */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  background: $primary-bg-color;
+  color: $text-dark;
+
+  /* ✅ HIDE SCROLLBAR (ALL BROWSERS) */
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/Edge legacy */
+}
+
+/* Chrome / Safari / Edge */
+.content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Theme helpers */
 .light-theme-body {
-    background-color: $primary-bg-color;
-    color: $text-dark;
+  background-color: $primary-bg-color;
+  color: $text-dark;
 }
 
 .dark-theme-body {
-    background-color: $background-dark;
-    color: $text-light;
-}
-
-.light-theme-nav {
-    background-color: $top-nav-color;
-    color: $text-dark;
-}
-
-.dark-theme-nav {
-    background-color: $top-nav-dark-color;
-    color: $text-light;
-}
-
- .toast-success {
-  background: #4caf50 !important;
-  color: #fff !important;
-  z-index: 10000;
+  background-color: $background-dark;
+  color: $text-light;
 }

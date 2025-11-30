@@ -1,60 +1,104 @@
 <div class="auth">
-  <div [ngClass]="isLogin ? 'login-form-wr' : 'form-wr'" [formGroup]="registrationForm">
-    @if (isLogin) {
-    <mat-form-field appearance="outline" class="login-field">
-      <input matInput placeholder="Email" formControlName="email" class="login-input">
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="mini" class="login-field">
-      <input matInput placeholder="Password" formControlName="password" type="password" class="login-input">
-    </mat-form-field>
-    }
-    @else{
-    <div class="profile-upload-wrapper" (click)="fileInput.click()">
-      @if (imageBase64) {
-      <img [src]="imageBase64" class="profile-image" />
-      }
-      @else {
-      <div class="placeholder">
-        <mat-icon>camera_alt</mat-icon>
-      </div>
-      }
-      <div class="upload-overlay">
-        <mat-icon>photo_camera</mat-icon>
-      </div>
-      <input #fileInput type="file" accept="image/*" hidden (change)="onFileSelected($event)" />
-    </div>
-    <mat-form-field appearance="outline" class="mini">
-      <input matInput placeholder="User Name" formControlName="userName" appInputController [inputType]="'textOnly'">
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="mini">
-      <input matInput placeholder="Phone Number" formControlName="phoneNumber" appInputController
-        [inputType]="'numberOnly'">
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="mini">
-      <mat-label>Select Option</mat-label>
-      <mat-select formControlName="gender">
-        @for (item of gendersList; track $index) {
-          <mat-option [value]="item.key">{{item.value}}</mat-option>
+
+  <div
+    class="auth-card"
+    [ngClass]="isLogin ? 'login-card' : 'signup-card'"
+    [formGroup]="registrationForm"
+  >
+
+    <!-- IMAGE SECTION (SIGNUP ONLY) -->
+    @if (!isLogin) {
+      <div class="avatar-section" (click)="fileInput.click()">
+        @if (imageBase64) {
+          <img [src]="imageBase64" alt="profile" />
+        } @else {
+          <mat-icon class="avatar-icon">photo_camera</mat-icon>
         }
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="mini">
-      <input matInput placeholder="Address" formControlName="address" appInputController [inputType]="'textOnly'">
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="mini">
-      <input matInput placeholder="Email" formControlName="email">
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="mini">
-      <input matInput placeholder="Password" formControlName="password" type="password">
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="mini">
-      <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password">
-    </mat-form-field>
+
+        <input
+          #fileInput
+          type="file"
+          hidden
+          accept="image/*"
+          (change)="onFileSelected($event)"
+        />
+      </div>
     }
-    <div class="action-buttons">
-      @for(btn of buttonsList; track btn){
-      <button [ngClass]="btn.buttonClass" (click)="buttonController(btn)"><mat-icon>{{btn.icon}}</mat-icon></button>
+
+    <!-- LOGIN -->
+    @if (isLogin) {
+      <mat-form-field appearance="outline" class="field">
+        <input matInput placeholder="Email" formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </mat-form-field>
+    }
+
+    <!-- SIGNUP -->
+    @else {
+      <mat-form-field appearance="outline" class="field">
+        <input matInput placeholder="User Name" formControlName="userName" appInputController [inputType]="'textOnly'">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <input matInput placeholder="Phone Number" formControlName="phoneNumber" appInputController [inputType]="'numberOnly'"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <mat-select placeholder="Gender" formControlName="gender">
+          @for (item of gendersList; track $index) {
+            <mat-option [value]="item.key">{{ item.value }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <input matInput placeholder="Address" formControlName="address" appInputController [inputType]="'textOnly'"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <input matInput placeholder="Email" formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <input
+          matInput
+          type="password"
+          placeholder="Confirm Password"
+          formControlName="confirmPassword"
+        />
+      </mat-form-field>
+    }
+
+    <!-- ICON BUTTONS (ORIGINAL BEHAVIOR) -->
+    <div class="actions">
+      @for (btn of buttonsList; track btn) {
+        <button
+          mat-icon-button
+          [ngClass]="btn.buttonClass"
+          (click)="buttonController(btn)"
+        >
+          <mat-icon>{{ btn.icon }}</mat-icon>
+        </button>
       }
     </div>
+
   </div>
+
 </div>

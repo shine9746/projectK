@@ -1,13 +1,38 @@
-<h2>Create Post</h2>
+<h2 class="create-title">Create Post</h2>
+
 <div class="post-box">
-    <input placeholder="Title"[(ngModel)]="titleInput">
-    <textarea placeholder="Write something..."[(ngModel)]="contentInput"></textarea>
-    <div class="actions">
-        <button mat-icon-button color="primary" matTooltip="Post" class="post-btn"(click)="createPost()">
-            <mat-icon>send</mat-icon>
-        </button>
-        <button mat-icon-button color="warn" matTooltip="Clear" class="clear-btn"(click)="titleInput = contentInput = ''">
-            <mat-icon>clear</mat-icon>
-        </button>
-    </div>
+  <input
+    type="text"
+    placeholder="Title"
+    [(ngModel)]="titleInput"
+    class="title-input"
+  />
+
+  <textarea
+    placeholder="Write something..."
+    [(ngModel)]="contentInput"
+    class="content-input"
+  ></textarea>
+
+  <div class="actions">
+    <button
+      mat-icon-button
+      matTooltip="Post"
+      color="primary"
+      class="post-btn"
+      (click)="createPost()"
+    >
+      <mat-icon>send</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      matTooltip="Clear"
+      color="warn"
+      class="clear-btn"
+      (click)="titleInput = contentInput = ''"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
 </div>

@@ -1,11 +1,42 @@
+<!-- USER MENU (MOBILE) -->
+<button mat-icon-button class="hamburger-btn" (click)="toggleMobileMenu()">
+  <mat-icon>menu</mat-icon>
+</button>
+
+<!-- CREATE POST FAB (MOBILE) -->
+<button
+  mat-fab
+  color="primary"
+  class="post-fab"
+  (click)="togglePostComposer()"
+>
+  <mat-icon>edit</mat-icon>
+</button>
+
 <div class="dashboard">
-    <aside class="user-panel">
-        <app-user-profile></app-user-profile>
-    </aside>
-    <main class="posts-panel">
-        <app-feed></app-feed>
-    </main>
-    <aside class="create-panel">
-        <app-user-post></app-user-post>
-    </aside>
+
+  <aside class="user-panel" [class.mobile-open]="mobileMenuOpen">
+    <app-user-profile></app-user-profile>
+  </aside>
+
+  <main class="posts-panel">
+    <app-feed></app-feed>
+  </main>
+
+  <aside class="create-panel desktop-only">
+    <app-user-post></app-user-post>
+  </aside>
+
 </div>
+
+<!-- MOBILE CREATE POST -->
+<div class="mobile-post-panel" *ngIf="postComposerOpen">
+  <app-user-post></app-user-post>
+</div>
+
+<!-- OVERLAY -->
+<div
+  class="mobile-overlay"
+  *ngIf="mobileMenuOpen || postComposerOpen"
+  (click)="closeAll()"
+></div>

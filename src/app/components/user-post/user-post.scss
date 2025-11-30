@@ -1,33 +1,52 @@
+/* ===================================================== */
+/* TITLE – RESET BROWSER DEFAULT                         */
+/* ===================================================== */
+
+.create-title {
+  margin: 0 0 12px 0; /* ✅ controlled spacing */
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* ===================================================== */
+/* BODY                                                   */
+/* ===================================================== */
+
 .post-box {
-width: 100%;
-max-width: 500px;
-display: flex;
-flex-direction: column;
-gap: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-
-textarea {
-width: 100%;
-min-height: 140px;
-border-radius: 10px;
-border: 1px solid #ddd;
-padding: .8rem;
-resize: vertical;
-margin-bottom: .3rem;
-box-sizing: border-box;
+/* INPUTS */
+.title-input,
+.content-input {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #dddddd;
+  padding: 12px 14px;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 
+.title-input {
+  height: 40px;
+}
 
+.content-input {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* ACTIONS */
 .actions {
-display: flex;
-justify-content: flex-end;
-gap: .4rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
-
 
 button[mat-icon-button] {
-width: 46px;
-height: 46px;
-border-radius: 10px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
 }
