@@ -17,8 +17,8 @@ export class ApiService {
     return this.http.post('https://localhost:7162/api/Authentication/Login', data);
   }
 
-  public getAllUsers(data: any) {
-    return this.http.post('https://localhost:7162/api/Users/GetAllUsers', data);
+  public getAllUsers() {
+    return this.http.get('https://localhost:7162/api/Users/GetAllUsers');
   }
   
   public updateUser(payload: any) {
@@ -42,11 +42,15 @@ export class ApiService {
   }
 
   public UserComments(payload: any) {
-    return this.http.post('https://localhost:7162/api/Posts/UserComments', payload);
+    return this.http.post('https://localhost:7162/api/Comments/UserComments', payload);
   }
 
   public getUserComments(payload: any) {
-    return this.http.post('https://localhost:7162/api/Posts/GetPostComments', payload);
+    return this.http.post('https://localhost:7162/api/Comments/GetPostComments', payload);
+  }
+
+  public deleteUserComments(payload: any) {
+    return this.http.post('https://localhost:7162/api/Comments/DeleteComments', payload);
   }
   
 }

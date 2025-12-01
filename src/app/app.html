@@ -1,7 +1,13 @@
+<div class="app-shell">
 
-<div class="top-nav">
+  <!-- Fixed Top Navigation -->
+  <div class="top-nav">
     <app-top-navigation></app-top-navigation>
-</div>
-<div class="content"[ngClass]="themeModeClassBody">
+  </div>
+
+  <!-- ✅ ONLY SCROLL AREA -->
+  <div class="content" [ngClass]="themeModeClassBody">
     <router-outlet></router-outlet>
+  </div>
+
 </div>

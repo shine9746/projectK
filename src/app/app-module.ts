@@ -33,6 +33,9 @@ import { EditUser } from './components/edit-user/edit-user';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmationPopup } from './components/confirmation-popup/confirmation-popup';
+import { Peoples } from './components/peoples/peoples';
+import { MatListModule } from '@angular/material/list';
+import { SearchFilterPipe } from './pipes/search-filter-pipe';
 @NgModule({
   declarations: [
     App,
@@ -44,7 +47,9 @@ import { ConfirmationPopup } from './components/confirmation-popup/confirmation-
     InputController,
     TopNavigation,
     EditUser,
-    ConfirmationPopup
+    ConfirmationPopup,
+    Peoples,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -68,7 +73,8 @@ import { ConfirmationPopup } from './components/confirmation-popup/confirmation-
     MatDividerModule,
     MatCardModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatListModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

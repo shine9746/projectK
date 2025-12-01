@@ -1,78 +1,164 @@
 <div class="posts-container">
-    <div class="posts-header center-header">
-        <h2 class="title feed-title">Feed</h2>
-        <div class="actions">
-            <button class="action-btn icon-btn" [ngClass]="refreshActive ? 'active-icon' : ''"
-                (click)="toggleRefresh()">
-                <mat-icon>refresh</mat-icon>
-            </button>
-            <button class="action-btn icon-btn" [ngClass]="filterActive ? 'active-icon' : ''" (click)="toggleFilter()">
-                <mat-icon>filter_list</mat-icon>
-            </button>
-        </div>
+
+  <!-- HEADER -->
+  <div class="posts-header center-header">
+    <h2 class="title feed-title">Feed</h2>
+
+    <div class="actions">
+      <button
+        class="action-btn icon-btn"
+        [ngClass]="refreshActive ? 'active-icon' : ''"
+        (click)="toggleRefresh()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+
+      <button
+        class="action-btn icon-btn"
+        [ngClass]="filterActive ? 'active-icon' : ''"
+        (click)="toggleFilter()">
+        <mat-icon>filter_list</mat-icon>
+      </button>
     </div>
-    <div class="posts-scroll">
-        @if (posts().length === 0) {
-        <p class="empty-state">No posts yet.</p>
-        }
-        @for (post of posts(); track post.id) {
-        <div class="post-card">
-            <div class="post-header">
-                <img class="post-avatar" [src]="'https://localhost:7162'+post.postOwnerImage" />
-                <div>
-                    <h3 class="post-title">{{ post.postTitle }}</h3>
-                    <h4>{{ post.postOwnerName }}</h4>
-                    <span class="timestamp">{{ post.postCreationDate | date:'short' }}</span>
-                </div>
-            </div>
-            <p class="post-content">{{ post.postContent }}</p>
-            <div>
-                <button mat-raised-button class="like-btn" [ngClass]="post.liked ? 'likeButton' : ''"
-                    (click)="buttonAction(post,1)">
-                    <mat-icon>thumb_up</mat-icon>
-                    @if(post.postLikes > 0) {
-                    <span>{{post.postLikes}}</span>
-                    }
-                </button>
-                <button mat-raised-button class="dislike-btn" [ngClass]="post.disLiked ? 'disLikeButton': ''"
-                    (click)="buttonAction(post,2)">
-                    <mat-icon>thumb_down</mat-icon>
-                    @if(post.postDisLikes > 0) {
-                    <span>{{post.postDisLikes}}</span>
-                    }
-                </button>
-            </div>
-            <div class="comment-section">
-                <button class="toggle-comments" (click)="toggleComments(post)">
-                    <mat-icon>{{ post.showComments ? 'expand_less' : 'expand_more' }}</mat-icon>
-                    {{ post.showComments ? 'Hide Comments' : 'Show Comments' }}
-                </button>              
-                @if (post.showComments) {
-                <div class="comment-list">
-                    @if (!post.comments || post.comments.length === 0) {
-                    <p class="empty-comment">No comments yet.</p>
-                    }
-                    @if (post?.comments?.length) {
-                    <span>{{post?.comments?.length}}</span>
-                }
-                    @for (comment of post?.comments; track comment.commentId) {
-                    <div class="comment-item">
-                        <strong>{{ comment.userName }}</strong>
-                        <p>{{ comment.commentContent }}</p>
-                        <span class="comment-date">{{ post.commentCreationDate | date:'short' }}</span>
+  </div>
+
+  <!-- SCROLL -->
+  <div class="posts-scroll">
+
+    @if (posts().length === 0) {
+      <p class="empty-state">No posts yet.</p>
+    }
+
+    @for (post of posts(); track post.id) {
+
+      <!-- POST CARD -->
+      <div class="post-card">
+
+        <!-- POST HEADER -->
+        <div class="post-header">
+          <img
+            class="post-avatar"
+            [src]="'https://localhost:7162' + post.postOwnerImage"
+          />
+
+          <div>
+            <h3 class="post-title">{{ post.postTitle }}</h3>
+            <h4>{{ post.postOwnerName }}</h4>
+            <span class="timestamp">
+              {{ post.postCreationDate | date:'short' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- POST BODY -->
+        <p class="post-content">
+          {{ post.postContent }}
+        </p>
+
+        <!-- ACTIONS -->
+        <div class="post-actions">
+          <button
+            mat-raised-button
+            class="like-btn"
+            [ngClass]="post.liked ? 'likeButton' : ''"
+            (click)="buttonAction(post,1)">
+            <mat-icon>thumb_up</mat-icon>
+            @if (post.postLikes > 0) {
+              <span>{{ post.postLikes }}</span>
+            }
+          </button>
+
+          <button
+            mat-raised-button
+            class="dislike-btn"
+            [ngClass]="post.disLiked ? 'disLikeButton' : ''"
+            (click)="buttonAction(post,2)">
+            <mat-icon>thumb_down</mat-icon>
+            @if (post.postDisLikes > 0) {
+              <span>{{ post.postDisLikes }}</span>
+            }
+          </button>
+        </div>
+
+        <!-- COMMENTS -->
+        <div class="comment-section">
+
+          <!-- TOGGLE -->
+          <button class="toggle-comments" (click)="toggleComments(post)">
+            <mat-icon>
+              {{ post.showComments ? 'expand_less' : 'expand_more' }}
+            </mat-icon>
+            {{ post.showComments ? 'Hide Comments' : 'Show Comments' }}
+            @if (post?.commentsCount > 0) {
+              <span class="comment-count">
+                ({{ post.commentsCount }})
+              </span>
+            }
+          </button>
+
+          <!-- COMMENT LIST -->
+          @if (post.showComments) {
+            <div class="comment-list">
+
+              @if (!post.comments || post.comments.length === 0) {
+                <p class="empty-comment">No comments yet.</p>
+              }
+
+              @for (comment of post.comments; track comment.commentId) {
+                <div class="comment-item">
+
+                  <!-- AVATAR -->
+                  <img
+                    class="comment-avatar"
+                    [src]="'https://localhost:7162' + comment.userImage"
+                  />
+
+                  <!-- BODY -->
+                  <div class="comment-body">
+                    <div class="comment-header">
+
+                      <strong class="comment-username">
+                        {{ comment.userName }}
+                      </strong>
+
+                      <span class="comment-time">
+                        {{ comment.commentCreationDate | date:'short' }}
+                      </span>
+
+                      @if (comment?.userId.toString() === userId?.toString()) {
+                        <button
+                          class="delete-comment"(click)="deleteUserComments(comment,post)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      }
                     </div>
-                    }
+
+                    <p class="comment-text">
+                      {{ comment.commentContent }}
+                    </p>
+                  </div>
                 </div>
-                }
-                <div class="comment-input-row">
-                    <input type="text" placeholder="Write a comment..." [(ngModel)]="post.comment"
-                        class="comment-input" />
-                    <button mat-raised-button color="primary" (click)="submitComment(post)">
-                        Submit
-                    </button>
-                </div>
+              }
             </div>
+          }
+
+          <!-- INPUT -->
+          <div class="comment-input-row">
+            <input
+              type="text"
+              class="comment-input"
+              placeholder="Write a comment..."
+              [(ngModel)]="post.comment"
+            />
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="submitComment(post)">
+              Submit
+            </button>
+          </div>
+
         </div>
-        }
-    </div>
+      </div>
+    }
+  </div>
 </div>

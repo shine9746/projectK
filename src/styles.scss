@@ -1,22 +1,14 @@
-/* Centralized application styles - imports variables and theme */
 @use './styles/variables' as *;
 @use './styles/theme' as *;
 
-/* Global app styles */
-/* root sizing so calc(100vh - nav) works reliably */
 html, body {
   height: 100%;
   margin: 0;
+  overflow: hidden; /* ✅ PAGE NEVER SCROLLS */
 }
 
-app-root, body > * {
+app-root {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
-
-/* optional: if navbar is fixed, ensure routed content has offset */
-.main-content, .router-body {
-  margin-top: 70px;                 /* set to your navbar height */
-  min-height: calc(100vh - 70px);
-  box-sizing: border-box;
-}
-

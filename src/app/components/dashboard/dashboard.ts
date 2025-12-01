@@ -21,4 +21,21 @@ interface Post {
 })
 
 export class Dashboard {
+  mobileMenuOpen = false;
+  postComposerOpen = false;
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+    this.postComposerOpen = false;
+  }
+
+  togglePostComposer() {
+    this.postComposerOpen = !this.postComposerOpen;
+    this.mobileMenuOpen = false;
+  }
+
+  closeAll() {
+    this.mobileMenuOpen = false;
+    this.postComposerOpen = false;
+  }
 }
